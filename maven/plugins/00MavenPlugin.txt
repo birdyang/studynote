@@ -1,0 +1,40 @@
+http://maven.apache.org/plugins/index.html
+1. 介绍
+Maven核心就是执行框架插件。这里有一些核心插件以及其他插件，分为build和reporting两类；
+具体的列表参照http://maven.apache.org/plugins/index.html 这个网址列出来；
+
+2. 配置
+2.1 Build plugins
+在build期间执行，配置在pom的<build/>节点里面；
+
+2.2 Reporting plugins
+在site generation期间执行，配置在pom的<reporting/>节点里面；
+reporting plugin执行结果是generated site的一部分。
+Reporting plugins还有国际化和本地化，可以参照 localization of our plugins(http://maven.apache.org/plugins/localization.html)
+
+3. Supported Plugins
+最新的列表在Maven仓库里面： org/apache/maven/plugins/ (https://repo.maven.apache.org/maven2/org/apache/maven/plugins/)
+其他可以在该网站看下列表；
+
+同时还有一些sandbox的plugin： source repository(https://svn.apache.org/repos/asf/maven/sandbox/trunk/plugins)
+
+历史版本的插件可以看文档： 位置(http://maven.apache.org/plugins-archives/)
+
+4. 退休的插件
+eclipse  -- 为当前工程生成一个eclipse project文件
+idea    -- 为当前工程创建、更新一个IDEA工作空间
+one    --  Maven 1.x仓库交互和build
+reactor  -- build一个互相依赖的project的集合
+
+5. Maven网站之外的插件
+ codehaus.org -- 由于该网站在2015.1关闭，正在迁移里面内容到新的位置，所以有部分的link不能使用。
+ MojoHaus at Github  -- http://www.mojohaus.org/plugins.html  这里有很多插件也是比较常用的。。
+ code.google.com  -- https://code.google.com/hosting/search?q=maven+plugin+label%3Amaven&projectsearch=Search+Projects
+ others -- 在网站上有列出来
+
+
+6. 配置Plugins
+http://maven.apache.org/guides/mini/guide-configuring-plugins.html
+
+
+

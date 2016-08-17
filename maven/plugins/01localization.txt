@@ -1,0 +1,46 @@
+http://maven.apache.org/plugins/localization.html
+Localization of Plugins
+1. 介绍
+很多的插件都跟site generations有关，需要国际化；
+需要下载一些properties文件并翻译它们；
+基本的site generation有三个组件的文件国际化： Maven site plugin, Maven Project Info Reports Pugin and Maven Doxia Tools
+注意：该网站的列表中SVN相对是比较新的国际化；这些是可以使用的；
+zh_CN可用的有： Doxia Integration Tools ； Project Info Reports ； Site
+
+2. Localizing a Plugin
+自己本地化插件
+2.1 检查你想要添加翻译的插件的源代码
+2.2 找到需要翻译的资源文件，通常是在src/main/resources 文件夹；
+2.3 拷贝基本文件，也就是那个不是语言扩展名的；这个文件应该有跟原来文件相同的名字；而不是有语言扩展名的；
+比如，如果想翻译checkstyle plugin为Spanish， 你应该拷贝src/main/resources/checkstyle-report.properties 到 src/main/resources/checkstyle-report_es.properties.
+2.4 编辑新文件然后翻译所有的属性。不要修改文件的格式，也就是保持当前的编排和换行。做好是使用一个图形化的工具修改；
+2.5 转换新文件： 保证所有non-US-ASCII字符转换为Unicode编码；
+2.6 mvn install 这个plugin
+2.7 配置工程使用这个最新build的SNAPSHOT版本的插件，同时需要配置project使用这个语言进行site：
+***********************************
+<build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <locales>es</locales>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  ****************************************
+2.8 运行mvn site 进行测试
+2.9 如果你的翻译可用，请创建一个 jira issue, 描述上是"Add Spanish translation", 注意留下issue note；
+2.10 创建一个patch文件：里面是你的翻译文件，使用issue number命名文件：
+ svn diff > MYISSUE-123.patch
+2.11 attach 这个patch文件到JIRA上面
+
+3. 工具
+native2ascii -- 转换你的文本文件到Unicode-encoded编码，而不是本地的编码。这个是在Java SDK里面： http://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/native2ascii.html
+native2ascii checkstyle-report_es.properties checkstyle-report_es-encoded.properties
+同时还可以使用工具查看你的编码，和转换你的文件编码(Notepad++)
+或者直接使用Eclipse properties的编辑插件；http://propedit.sourceforge.jp/index_en.html
+
+
+

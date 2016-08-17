@@ -1,0 +1,25 @@
+http://maven.apache.org/guides/mini/guide-configuring-plugins.html
+Guide to Configuring Plugins
+1. 介绍
+Maven里面有build和reporting插件：
+Build plugins： 在build期间执行，可以配置在<build/>元素中。
+Reporting plugins： 在site generation期间执行，配置在<reporting/>元素中。
+
+2. 所有的插件最少需要信息：groupId, artifactId and version
+其他项在： https://maven.apache.org/ref/3.3.9/maven-model/maven.html#class_plugin
+groupId   -- default value: org.apache.maven.plugins.
+artifactId
+version
+extensions  -- 是否加载该插件的Maven扩展部分，比如packging，type handlers， 值是Boolean，默认是false；只是在有必要的时候设置为true。
+executions/execution*  -- 多个( List<PluginExecution>); build生命周期的多个执行目标集合；每一个有不同的配置；
+dependencies/dependency*  -- 多个( List<Dependency> ); project需要引入额外的依赖到插件的classload
+goals -- 过期
+inherited  -- 是否传播configuration给子POM； Boolean ， 默认值true， 
+configuration   -- DOM 配置 这里可以控制怎么从parent pom和child pom里面继承configuration；通过在configuration元素下面加 combine.children or combine.self
+
+3. 建议总是通过build定义每个查件的版本来保证build的继续更新。一个好的方式是在<build><pluginManagement/></build>中为每个build plugin指定；
+通常是在父pom里面定义一个 <pluginManagement/>；
+reporting plugin,你需要在<reporting><plugins/></reporting>指定版本， 或者也是在<build><pluginManagement/></build>元素中指定；
+
+4. Generic Configuration  一般配置
+http://maven.apache.org/guides/mini/guide-configuring-plugins.html
